@@ -1,5 +1,5 @@
 ## Application Function:
-    [] - User can create, read, update and delete a post
+    [] - User can create, read, update and delete a movie
 
 ## Interface:
     - User can view movie form
@@ -14,7 +14,7 @@
 
 ## User controller and views:
     - '/users/signup' => renders signup form
-    - '/users/signup' => processes signup from,. creates user, POST
+    - '/users/signup' => processes signup form, creates user, POST
     - 'users/login' => renders login form
     - 'users/login' => processes login form, POST
     - need to set session to login user
@@ -25,10 +25,10 @@
     - movie belongs to user
 
 ## Movie controller and views:
-    - '/movies/new' => renders new post form
-    - '/movies' => submits posts, POST
-    - '/movies' => renders all orders
-    - '/movies/:id' => renders one instance of Post
+    - '/movies/new' => renders new movie form
+    - '/movies' => submits movie, POST
+    - '/movies' => renders all movies
+    - '/movies/:id' => renders one instance of Movie
     - '/movies/:id/edit' => renders update form for an instance
     - '/movies/:id' => update instance, PATCH
     - '/movies/:id/delete' => deletes instance
