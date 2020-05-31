@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20200531040513) do
     t.integer "release_date"
     t.text    "description"
     t.integer "rating"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
