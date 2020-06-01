@@ -24,12 +24,15 @@ class UserController < ApplicationController
     end
   end
 
-  #post signup
-
-
-
-
   #login
+
+  get '/login' do
+    if logged_in?
+      redirect '/movies'
+    else
+      erb :'users/login'
+    end
+  end
 
 
 
