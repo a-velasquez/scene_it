@@ -34,7 +34,7 @@
     - '/movies/:id/delete' => deletes instance
 
 ## Where To Start?
-    [ ] - setup classes
-    [ ] - set up database
+    [x] - setup classes
+    [x] - set up database
     [ ] - user_controller
     [ ] - movie_controller
