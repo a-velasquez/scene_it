@@ -1,5 +1,7 @@
 class MovieController < ApplicationController
 
+
+#read all
   get '/movies' do
     if logged_in?
       @user = current_user
