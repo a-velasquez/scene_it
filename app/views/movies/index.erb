@@ -1,1 +1,9 @@
-<p>here are your movies</p>
+<p>Here are your Movies, <%= current_user.username %>!</p>
+
+<ol>
+ <% @movies.each do |movie| %>
+  <li>
+    <p><%= movie.title %></p>
+  </li>
+ <% end %>
+</ol>
