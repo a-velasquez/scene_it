@@ -10,11 +10,15 @@ class UserController < ApplicationController
     end
   end
 
+  post '/signup' do
+    if logged_in?
+      redirect '/movies'
+    else
 
-  #get signup
-  
 
+    end
 
+  end
 
   #post signup
 
