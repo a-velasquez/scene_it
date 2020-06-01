@@ -3,11 +3,11 @@
 <ol>
  <% @movies.each do |movie| %>
   <li>
-    <p><%= movie.title %></p>
-    <p><%= movie.genre %></p>
-    <p><%= movie.release_date %></p>
-    <p><%= movie.description %></p>
-    <p><%= movie.rating %></p>
+    <p><b><%= movie.title %></b></p>
+    <p><b>Genre:</b> <%= movie.genre %></p>
+    <p><b>Released:</b> <%= movie.release_date %></p>
+    <p><b>Description:</b> <%= movie.description %></p>
+    <p><b>You Rated It:</b> <%= movie.rating %>/5</p>
   </li>
  <% end %>
 </ol>
