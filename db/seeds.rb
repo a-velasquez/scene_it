@@ -33,6 +33,6 @@ Movie.create(
   title: "Antitrust",
   genre: "Thriller",
   release_date: 2001,
-  description: "When a young graduate lands his dream job writing software he uncovers some dark secrets and soon learns he can't trust anyone"
+  description: "When a young graduate lands his dream job writing software he uncovers some dark secrets and soon learns he can't trust anyone",
   rating: 5,
   user_id: ben.id)
