@@ -3,12 +3,16 @@ class UserController < ApplicationController
   #signup
 
   get '/signup' do
-    erb :'users/signup'
+    if logged_in?
+      redirect '/movies'
+    else
+      erb :'users/signup'
+    end
   end
 
 
   #get signup
-
+  
 
 
 
