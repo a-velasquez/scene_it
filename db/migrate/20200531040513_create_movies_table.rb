@@ -6,7 +6,9 @@ class CreateMoviesTable < ActiveRecord::Migration
       t.integer :release_date
       t.text :description
       t.integer :rating
-      t.integer :user_id 
+      t.integer :user_id
+      
+      t.timestamps
     end
   end
 end

@@ -14,12 +14,14 @@
 ActiveRecord::Schema.define(version: 20200531040513) do
 
   create_table "movies", force: :cascade do |t|
-    t.string  "title"
-    t.string  "genre"
-    t.integer "release_date"
-    t.text    "description"
-    t.integer "rating"
-    t.integer "user_id"
+    t.string   "title"
+    t.string   "genre"
+    t.integer  "release_date"
+    t.text     "description"
+    t.integer  "rating"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|
