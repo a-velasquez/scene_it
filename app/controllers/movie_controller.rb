@@ -47,5 +47,14 @@ class MovieController < ApplicationController
     end
   end
 
+  #render edit form
+  get '/movies/:id/edit' do
+    if logged_in?
+      erb :'movies/edit'
+    else
+      redirect '/login'
+    end
+  end
+
 
 end
