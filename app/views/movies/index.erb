@@ -2,12 +2,14 @@
 
 <ol>
  <% @movies.each do |movie| %>
-  <li><p><b><%= movie.title %></b></p></li>
-    <p><b>Genre:</b> <%= movie.genre %></p>
-    <p><b>Released:</b> <%= movie.release_date %></p>
-    <p><b>Description:</b> <%= movie.description %></p>
-    <p><b>You Rated It:</b> <%= movie.rating %></p><br>
- <% end %>
+  <li>
+   <p><b><%= movie.title %></b></p>
+   <p><b>Genre:</b> <%= movie.genre %></p>
+   <p><b>Released:</b> <%= movie.release_date %></p>
+   <p><b>Description:</b> <%= movie.description %></p>
+   <p><b>You Rated It:</b> <%= movie.rating %></p><br>
+  <% end %>
+ </li>
 </ol><br>
 
 
