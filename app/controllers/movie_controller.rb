@@ -11,7 +11,7 @@ class MovieController < ApplicationController
 
   post '/movies' do
     if logged_in?
-      @movie = Movie.create(
+      @movie = current_user.movies.create(
         title: params[:title],
         genre: params[:genre],
         release_date: params[:release_date],
