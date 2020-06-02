@@ -56,5 +56,19 @@ class MovieController < ApplicationController
     end
   end
 
+  patch '/movies/:id' do
+    if logged_in?
+      @movie = Movie.finy_by(:id params[:id])
+      @movie.title = params[:title]
+      @movie.genre = params[:genre]
+      @movie.release_date = params[:release_date]
+      @movie.description = params[:description]
+      @movie.rating = params[:rating]
+      @movie.save
+    else
+      redirect '/login'
+    end
+  end
+
 
 end
