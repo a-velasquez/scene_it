@@ -3,7 +3,7 @@
 <form action="/movies" method="POST">
   <p>Movie Title:  </p><input type="text" id="title" name="title">
   <p>Movie Genre:  </p><input type="text" id="genre" name="genre">
-  <p>Year Movie Was Released e.g.(1990): </p><input type="number" id="release_date" name="release_date" min="1900" max="<% Date.today.year %>">
+  <p>Year Movie Was Released e.g.(1990): </p><input type="number" id="release_date" name="release_date" min="1900">
   <p>Description:  </p><input type="text" id="description" name="description">
   <p>Rating:       </p><input type="number" id="rating" name="rating" min="1" max="5"><br><br>
   <input type="submit" value="Save Movie">
