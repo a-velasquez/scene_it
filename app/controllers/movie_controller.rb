@@ -36,7 +36,16 @@ class MovieController < ApplicationController
     end
   end
 
+  #read one instance
 
+  get '/movies/:id' do
+    if logged_in?
+      @movie = Movie.find_by(id: params[:id])
+      erb :'movies/show'
+    else
+      redirect '/login'
+    end
+  end
 
 
 end
