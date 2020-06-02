@@ -1,16 +1,31 @@
 class MovieController < ApplicationController
 
-#CREATE
-get '/movies/new' do
-  if logged_in?
-    erb :'/movies/new'
-  else
-    redirect '/login'
+  #CREATE
+  get '/movies/new' do
+    if logged_in?
+      erb :'/movies/new'
+    else
+      redirect '/login'
+    end
   end
-end
 
+  post '/movies' do
+    if logged_in?
+      @movie = Movie.create(
+        title: params[:title],
+        genre: params[:genre],
+        release_date: params[:release_date],
+        description: params[:description],
+        rating: params[:rating]
+       )
+       binding.pry
+      redirect '/movies'
+    else
+      redirect '/login'
+    end
+  end
 
-#read all
+  #READ ALL
   get '/movies' do
     if logged_in?
       @user = current_user
