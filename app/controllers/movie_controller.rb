@@ -40,7 +40,7 @@ class MovieController < ApplicationController
 
   get '/movies/:id' do
     if logged_in?
-      @movie = Movie.find_by(id: params[:id])
+      @movie = Movie.find_by_id(params[:id])
       erb :'movies/show'
     else
       redirect '/login'
@@ -50,6 +50,7 @@ class MovieController < ApplicationController
   #render edit form
   get '/movies/:id/edit' do
     if logged_in?
+      @movie = Movie.find_by_id(params[:id])
       erb :'movies/edit'
     else
       redirect '/login'
@@ -57,16 +58,17 @@ class MovieController < ApplicationController
   end
 
   patch '/movies/:id' do
-    if logged_in?
-      @movie = Movie.finy_by(:id params[:id])
+    if params[:title] == "" || params[:genre] == "" || params[:description] == "" || params[:rating] == ""
+      redirect to "/movies/#{params[:id]}/edit"
+    else
+      @movie = Movie.find_by_id(params[:id])
       @movie.title = params[:title]
       @movie.genre = params[:genre]
-      @movie.release_date = params[:release_date]
-      @movie.description = params[:description]
+      @movie.content = params[:content]
       @movie.rating = params[:rating]
+      @movie.user_id = current_user.id
       @movie.save
-    else
-      redirect '/login'
+      redirect to "/movies/#{@movie.id}"
     end
   end
 
