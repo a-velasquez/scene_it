@@ -3,14 +3,16 @@
 <ol>
  <% @movies.each do |movie| %>
   <li>
+  <!-- <div> -->
     <p><b><%= movie.title %></b></p>
     <p><b>Genre:</b> <%= movie.genre %></p>
     <p><b>Released:</b> <%= movie.release_date %></p>
     <p><b>Description:</b> <%= movie.description %></p>
-    <p><b>You Rated It:</b> <%= movie.rating %>/5</p>
+    <p><b>You Rated It:</b> <%= movie.rating %></p>
+  <!-- </div> -->
   </li>
  <% end %>
 </ol>
 
 
-<p><a href='/logout'>Log Out</a></p>
+<p><a href='/logout'>Log Out</a></
