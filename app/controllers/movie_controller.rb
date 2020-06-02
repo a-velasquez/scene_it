@@ -18,7 +18,7 @@ class MovieController < ApplicationController
         description: params[:description],
         rating: params[:rating]
        )
-       binding.pry
+      #  binding.pry
       redirect '/movies'
     else
       redirect '/login'
