@@ -36,8 +36,9 @@ class UserController < ApplicationController
 
   post '/login' do
     @user = User.find_by(username: params[:username])
-    if @user
-      redirect '/posts'
+    if @user && @user.authenticate(params[:password]) #uses Activerecord method to authenticate users password
+      session[:user_id] = @user.id #logs user in
+      redirect '/movies'
     else
       redirect '/login'
     end
