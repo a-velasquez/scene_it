@@ -72,5 +72,15 @@ class MovieController < ApplicationController
     end
   end
 
+  #DELETE MOVIE
+  get '/movies/:id/delete' do
+    if logged_in?
+      @movie = Movie.find_by_id(params[:id])
+      @movie.destroy
+      redirect '/movies'
+    else
+      redirect '/login'
+    end
+  end
 
 end
