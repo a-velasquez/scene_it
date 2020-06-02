@@ -1,18 +1,14 @@
-<p>Here are your Movies, <%= current_user.username %>!</p>
+<p><b>Here are your Movies, <%= current_user.username %>!</b></p>
 
 <ol>
  <% @movies.each do |movie| %>
-  <li>
-  <!-- <div> -->
-    <p><b><%= movie.title %></b></p>
+  <li><p><b><%= movie.title %></b></p></li>
     <p><b>Genre:</b> <%= movie.genre %></p>
     <p><b>Released:</b> <%= movie.release_date %></p>
     <p><b>Description:</b> <%= movie.description %></p>
-    <p><b>You Rated It:</b> <%= movie.rating %></p>
-  <!-- </div> -->
-  </li>
+    <p><b>You Rated It:</b> <%= movie.rating %></p><br>
  <% end %>
-</ol>
+</ol><br>
 
 
 <p><a href='/logout'>Log Out</a></
