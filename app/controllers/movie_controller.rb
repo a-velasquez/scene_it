@@ -64,7 +64,7 @@ class MovieController < ApplicationController
       @movie = Movie.find_by_id(params[:id])
       @movie.title = params[:title]
       @movie.genre = params[:genre]
-      @movie.content = params[:content]
+      @movie.description = params[:description]
       @movie.rating = params[:rating]
       @movie.user_id = current_user.id
       @movie.save
