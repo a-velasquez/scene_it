@@ -1,6 +1,5 @@
 <p><b>Here are your Movies, <%= current_user.username %>!</b></p>
 
-<ol>
  <% @movies.each_with_index do |movie, i| %>
   <li>
    <p><b><%= 1 +i %>. <a href="/movies/<%= movie.id%>"><%= movie.title %></a></b></p>
@@ -8,10 +7,10 @@
    <p><b>Released:</b> <%= movie.release_date %></p>
    <p><b>Description:</b> <%= movie.description %></p>
    <p><b>You Rated It:</b> <%= movie.rating %></p>
-   <p>Added <%= movie.created_at %></p><br>
+   <p>Added <%= movie.created_at %></p><br><br>
   <% end %>
- </li>
-</ol><br>
+</li><br>
+
 
 
 <p><a href='/logout'>Log Out</a></p>
