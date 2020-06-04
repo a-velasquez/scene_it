@@ -1,1 +1,8 @@
-<h1>Welcome to Scene It!</h1>
+<h1>Welcome to Scene It!</h1><br><br>
+
+<% if logged_in? %>
+   <p><a href='/movies'>See All Of Your Movies </a></p>
+   <p><a href='/logout'>Log Out </a></p>
+  <% else %>
+   <p><a href='/login'>Login To See Your Movies</a></p>
+<% end %>
