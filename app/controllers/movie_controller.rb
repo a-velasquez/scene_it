@@ -51,7 +51,11 @@ class MovieController < ApplicationController
   get '/movies/:id/edit' do
     if logged_in?
       @movie = Movie.find_by_id(params[:id])
-      erb :'movies/edit'
+      if @movie && @movie.user == current_user
+        erb :'movies/edit'
+      else
+        redirect '/movies'
+      end
     else
       redirect '/login'
     end
