@@ -52,7 +52,6 @@ class MovieController < ApplicationController
     if logged_in?
       @movie = Movie.find_by_id(params[:id])
       if @movie && @movie.user_id == current_user.id #ensure user can't modify movies saved by others
-        binding.pry
         erb :'movies/edit'
       else
         redirect '/movies'
@@ -62,21 +61,35 @@ class MovieController < ApplicationController
     end
   end
 
-  patch '/movies/:id' do
-    if params[:title] == "" || params[:genre] == "" || params[:description] == "" || params[:rating] == "" && params[:rating].size > 4
-      binding.pry
-      redirect to "/movies/#{params[:id]}/edit"
+  post '/movies' do
+    if logged_in?
+      if Movie.create(params[:movie]).valid?
+        @movie = current_user.movies.create(params[:movie])
+        @movie.save
+        redirect '/movies'
+      else
+        redirect '/movies/new'
+      end
     else
-      @movie = Movie.find_by_id(params[:id])
-      @movie.title = params[:title]
-      @movie.genre = params[:genre]
-      @movie.description = params[:description]
-      @movie.rating = params[:rating]
-      @movie.user_id = current_user.id
-      @movie.save
-      redirect to "/movies/#{@movie.id}"
+      redirect '/login'
     end
   end
+
+  # patch '/movies/:id' do
+    # if params[:title] == "" || params[:genre] == "" || params[:description] == "" || params[:rating] == ""
+    #   binding.pry
+  #     redirect to "/movies/#{params[:id]}/edit"
+  #   else
+  #     @movie = Movie.find_by_id(params[:id])
+  #     @movie.title = params[:title]
+  #     @movie.genre = params[:genre]
+  #     @movie.description = params[:description]
+  #     @movie.rating = params[:rating]
+  #     @movie.user_id = current_user.id
+  #     @movie.save
+  #     redirect to "/movies/#{@movie.id}"
+  #   end
+  # end
 
   #DELETE MOVIE
   get '/movies/:id/delete' do
