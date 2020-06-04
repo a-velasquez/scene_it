@@ -28,14 +28,16 @@ class MovieController < ApplicationController
 
   post '/movies' do
     if logged_in?
-      @movie = current_user.movies.create(
-        title: params[:title],
-        genre: params[:genre],
-        release_date: params[:release_date],
-        description: params[:description],
-        rating: params[:rating]
-       )
-      redirect '/movies'
+        @user = current_user
+        @movie = @user.movies.create(
+          title: params[:title],
+          genre: params[:genre],
+          release_date: params[:release_date],
+          description: params[:description],
+          rating: params[:rating]
+          )
+        @movie.save
+        redirect '/movies'
     else
       redirect '/login'
     end
