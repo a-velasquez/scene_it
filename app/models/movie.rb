@@ -3,5 +3,5 @@ class Movie < ActiveRecord::Base
 
   validates :title, presence: true
   validates :genre, presence: true
-  validates :release_date, presence: true, length: { is: 4 }, numericality: { only_integer: true } 
+  validates :release_date, presence: true 
 end

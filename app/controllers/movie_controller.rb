@@ -1,3 +1,5 @@
+require 'pry'
+
 class MovieController < ApplicationController
 
   #CREATE
@@ -9,6 +11,21 @@ class MovieController < ApplicationController
     end
   end
 
+  # post '/movies' do
+  #   if logged_in?
+  #     if Movie.create(params[:movie]).valid?
+  #       @movie = Movie.create(params[:movie])
+  #       @movie.user.id = current_user.id
+  #       @movie.save
+  #       redirect '/movies'
+  #     else
+  #       redirect '/movies/new'
+  #     end
+  #   else
+  #     redirect '/login'
+  #   end
+  # end
+
   post '/movies' do
     if logged_in?
       @movie = current_user.movies.create(
@@ -18,7 +35,6 @@ class MovieController < ApplicationController
         description: params[:description],
         rating: params[:rating]
        )
-      #  binding.pry
       redirect '/movies'
     else
       redirect '/login'
@@ -61,35 +77,21 @@ class MovieController < ApplicationController
     end
   end
 
-  post '/movies' do
-    if logged_in?
-      if Movie.create(params[:movie]).valid?
-        @movie = current_user.movies.create(params[:movie])
-        @movie.save
-        redirect '/movies'
-      else
-        redirect '/movies/new'
-      end
+
+  patch '/movies/:id' do
+    if params[:title] == "" || params[:genre] == "" || params[:description] == "" || params[:rating] == ""
+      redirect to "/movies/#{params[:id]}/edit"
     else
-      redirect '/login'
+      @movie = Movie.find_by_id(params[:id])
+      @movie.title = params[:title]
+      @movie.genre = params[:genre]
+      @movie.description = params[:description]
+      @movie.rating = params[:rating]
+      @movie.user_id = current_user.id
+      @movie.save
+      redirect to "/movies/#{@movie.id}"
     end
   end
-
-  # patch '/movies/:id' do
-    # if params[:title] == "" || params[:genre] == "" || params[:description] == "" || params[:rating] == ""
-    #   binding.pry
-  #     redirect to "/movies/#{params[:id]}/edit"
-  #   else
-  #     @movie = Movie.find_by_id(params[:id])
-  #     @movie.title = params[:title]
-  #     @movie.genre = params[:genre]
-  #     @movie.description = params[:description]
-  #     @movie.rating = params[:rating]
-  #     @movie.user_id = current_user.id
-  #     @movie.save
-  #     redirect to "/movies/#{@movie.id}"
-  #   end
-  # end
 
   #DELETE MOVIE
   get '/movies/:id/delete' do
