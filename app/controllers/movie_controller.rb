@@ -63,7 +63,8 @@ class MovieController < ApplicationController
   end
 
   patch '/movies/:id' do
-    if params[:title] == "" || params[:genre] == "" || params[:description] == "" || params[:rating] == ""
+    if params[:title] == "" || params[:genre] == "" || params[:description] == "" || params[:rating] == "" && params[:rating].size > 4
+      binding.pry
       redirect to "/movies/#{params[:id]}/edit"
     else
       @movie = Movie.find_by_id(params[:id])
