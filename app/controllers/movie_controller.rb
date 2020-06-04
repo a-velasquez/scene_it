@@ -51,7 +51,8 @@ class MovieController < ApplicationController
   get '/movies/:id/edit' do
     if logged_in?
       @movie = Movie.find_by_id(params[:id])
-      if @movie && @movie.user == current_user
+      if @movie && @movie.user_id == current_user.id #ensure user can't modify movies saved by others
+        binding.pry
         erb :'movies/edit'
       else
         redirect '/movies'
@@ -80,8 +81,12 @@ class MovieController < ApplicationController
   get '/movies/:id/delete' do
     if logged_in?
       @movie = Movie.find_by_id(params[:id])
-      @movie.destroy
-      redirect '/movies'
+      if @movie.user_id == current_user.id #ensures movie belongs to current user
+        @movie.destroy
+        redirect '/movies'
+      else
+        redirect '/movies'
+      end
     else
       redirect '/login'
     end
