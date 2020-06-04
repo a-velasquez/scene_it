@@ -3,3 +3,6 @@
 <p><b>Released in</b> <%= @movie.release_date %></p>
 <p><b>Description:</b> <%= @movie.description %></p>
 <p><b>You Rated It:</b> <%= @movie.rating %>/5</p>
+
+<p><a href="/movies/<%=@movie.id%>/edit">Edit This Movie</p>
+<p><a href="/movies">Back To Your Movies</p>
