@@ -14,6 +14,7 @@ class MovieController < ApplicationController
   post '/movies' do
     if logged_in?
       if @movie = Movie.valid_params?(params)
+        binding.pry
         @movie = current_user.movies.create(
           title: params[:title],
           genre: params[:genre],
@@ -30,23 +31,6 @@ class MovieController < ApplicationController
       redirect '/login'
     end
   end
-
-
-  # post '/movies' do
-  #   if logged_in?
-  #       @movie = current_user.movies.create(
-  #         title: params[:title],
-  #         genre: params[:genre],
-  #         release_date: params[:release_date],
-  #         description: params[:description],
-  #         rating: params[:rating]
-  #         )
-  #       @movie.save
-  #       redirect '/movies'
-  #   else
-  #     redirect '/login'
-  #   end
-  # end
 
   #READ ALL
   get '/movies' do
@@ -85,20 +69,22 @@ class MovieController < ApplicationController
   end
 
 
-  patch '/movies/:id' do
-    if params[:title] == "" || params[:genre] == "" || params[:description] == "" || params[:rating] == ""
-      redirect to "/movies/#{params[:id]}/edit"
-    else
-      @movie = Movie.find_by_id(params[:id])
-      @movie.title = params[:title]
-      @movie.genre = params[:genre]
-      @movie.description = params[:description]
-      @movie.rating = params[:rating]
-      @movie.user_id = current_user.id
-      @movie.save
-      redirect to "/movies/#{@movie.id}"
-    end
-  end
+
+
+  # patch '/movies/:id' do
+  #   if params[:title] == "" || params[:genre] == "" || params[:description] == "" || params[:rating] == ""
+  #     redirect to "/movies/#{params[:id]}/edit"
+  #   else
+  #     @movie = Movie.find_by_id(params[:id])
+  #     @movie.title = params[:title]
+  #     @movie.genre = params[:genre]
+  #     @movie.description = params[:description]
+  #     @movie.rating = params[:rating]
+  #     @movie.user_id = current_user.id
+  #     @movie.save
+  #     redirect to "/movies/#{@movie.id}"
+  #   end
+  # end
 
   #DELETE MOVIE
   get '/movies/:id/delete' do
