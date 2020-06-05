@@ -14,7 +14,6 @@ class MovieController < ApplicationController
   post '/movies' do
     if logged_in?
       if @movie = Movie.valid_params?(params)
-        binding.pry
         @movie = current_user.movies.create(
           title: params[:title],
           genre: params[:genre],
@@ -90,11 +89,11 @@ class MovieController < ApplicationController
   get '/movies/:id/delete' do
     if logged_in?
       @movie = Movie.find_by_id(params[:id])
-      if @movie.user_id == current_user.id #ensures movie belongs to current user
-        @movie.destroy
-        redirect '/movies'
-      else
-        redirect '/movies'
+        if authorized?(@movie) #ensures movie belongs to current user
+          @movie.destroy
+          redirect '/movies'
+        else
+          redirect '/movies'
       end
     else
       redirect '/login'
