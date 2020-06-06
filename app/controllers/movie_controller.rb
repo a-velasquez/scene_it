@@ -13,7 +13,7 @@ class MovieController < ApplicationController
 
   post '/movies' do
     if logged_in?
-      if @movie = Movie.valid_params?(params)
+      if @movie = Movie.valid_params?(params) #validates user inputs before creating movie
         @movie = current_user.movies.create(
           title: params[:title],
           genre: params[:genre],
@@ -81,7 +81,6 @@ class MovieController < ApplicationController
       description: params[:description],
       rating: params[:rating]
       )
-      binding.pry
       if Movie.valid_params?(params)
         redirect "/movies/#{@movie.id}"
       else
