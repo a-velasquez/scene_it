@@ -67,7 +67,10 @@ class MovieController < ApplicationController
     end
   end
 
+  patch '/movies/:id' do
 
+
+  end
 
 
   # patch '/movies/:id' do
@@ -99,5 +102,13 @@ class MovieController < ApplicationController
       redirect '/login'
     end
   end
+
+  private
+
+  def get_movie
+    @movie = Movie.find_by_id(params[:id])
+  end
+
+
 
 end
