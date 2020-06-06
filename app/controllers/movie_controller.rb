@@ -46,7 +46,7 @@ class MovieController < ApplicationController
 
   get '/movies/:id' do
     if logged_in?
-      @movie = Movie.find_by_id(params[:id])
+      get_movie
       erb :'movies/show'
     else
       redirect '/login'
@@ -91,7 +91,8 @@ class MovieController < ApplicationController
   #DELETE MOVIE
   get '/movies/:id/delete' do
     if logged_in?
-      @movie = Movie.find_by_id(params[:id])
+      # @movie = Movie.find_by_id(params[:id])
+      get_movie
         if authorized?(@movie) #ensures movie belongs to current user
           @movie.destroy
           redirect '/movies'
@@ -106,7 +107,7 @@ class MovieController < ApplicationController
   private
 
   def get_movie
-    @movie = Movie.find_by_id(params[:id])
+    @movie = Movie.find_by(id: params[:id])
   end
 
 
