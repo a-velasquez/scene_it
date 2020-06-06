@@ -56,8 +56,8 @@ class MovieController < ApplicationController
   #render edit form
   get '/movies/:id/edit' do
     if logged_in?
-      @movie = Movie.find_by_id(params[:id])
-      if @movie && @movie.user_id == current_user.id #ensure user can't modify movies saved by others
+      get_movie
+      if authorized?(@movie) #ensure user can't modify movies saved by others
         erb :'movies/edit'
       else
         redirect '/movies'
@@ -109,7 +109,5 @@ class MovieController < ApplicationController
   def get_movie
     @movie = Movie.find_by(id: params[:id])
   end
-
-
 
 end
