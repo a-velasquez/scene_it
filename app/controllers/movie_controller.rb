@@ -45,9 +45,13 @@ class MovieController < ApplicationController
   #read one instance
 
   get '/movies/:id' do
+    get_movie
     if logged_in?
-      get_movie
-      erb :'movies/show'
+      if authorized?(@movie) #checks to see if particualar movie belongs to user
+        erb :'movies/show'
+      else
+        redirect '/movies'
+      end
     else
       redirect '/login'
     end
@@ -68,37 +72,37 @@ class MovieController < ApplicationController
   end
 
   patch '/movies/:id' do
-
-
+    get_movie
+    if authorized?(@movie)
+      @movie.update(
+      title: params[:title],
+      genre: params[:genre],
+      release_date: params[:release_date],
+      description: params[:description],
+      rating: params[:rating]
+      )
+      binding.pry
+      if Movie.valid_params?(params)
+        redirect "/movies/#{@movie.id}"
+      else
+        redirect "/movies/#{@movie.id}/edit"
+      end
+    else
+      redirect '/movies'
+    end
   end
 
-
-  # patch '/movies/:id' do
-  #   if params[:title] == "" || params[:genre] == "" || params[:description] == "" || params[:rating] == ""
-  #     redirect to "/movies/#{params[:id]}/edit"
-  #   else
-  #     @movie = Movie.find_by_id(params[:id])
-  #     @movie.title = params[:title]
-  #     @movie.genre = params[:genre]
-  #     @movie.description = params[:description]
-  #     @movie.rating = params[:rating]
-  #     @movie.user_id = current_user.id
-  #     @movie.save
-  #     redirect to "/movies/#{@movie.id}"
-  #   end
-  # end
 
   #DELETE MOVIE
   get '/movies/:id/delete' do
     if logged_in?
-      # @movie = Movie.find_by_id(params[:id])
       get_movie
         if authorized?(@movie) #ensures movie belongs to current user
           @movie.destroy
           redirect '/movies'
         else
           redirect '/movies'
-      end
+        end
     else
       redirect '/login'
     end
