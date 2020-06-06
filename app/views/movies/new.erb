@@ -1,10 +1,10 @@
 <h2>Add A New Movie To Your List</h2>
 
 <form action="/movies" method="POST">
-  <p>Movie Title:  </p><input type="text" id="title" name="title">
-  <p>Movie Genre:  </p><input type="text" id="genre" name="genre">
-  <p>Year Movie Was Released: </p><input  type="number" id="release_date" name="release_date" min="1900" max="2025" placeholder="e.g.(1990)">
-  <p>Description:  </p><input type="text" id="description" name="description">
-  <p>Rating (1 - 5): </p><input type="number" id="rating" name="rating" min="1" max="5"><br><br>
+  <p>Movie Title:  </p><input type="text" id="title" name="title" required><br>
+  <p>Movie Genre:  </p><input type="text" id="genre" name="genre" required><br>
+  <p>Year Movie Was Released: </p><input type="number" id="release_date" name="release_date" min="1900" max="2025" placeholder="e.g.(1990)" required><br>
+  <p>Description:  </p><input type="text" id="description" name="description" required><br>
+  <p>Rating (1 - 5): </p><input type="number" id="rating" name="rating" min="1" max="5" required><br><br>
   <input type="submit" value="Save Movie">
 </form>
