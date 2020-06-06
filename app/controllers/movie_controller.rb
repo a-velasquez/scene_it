@@ -74,14 +74,14 @@ class MovieController < ApplicationController
   patch '/movies/:id' do
     get_movie
     if authorized?(@movie)
-      @movie.update(
-      title: params[:title],
-      genre: params[:genre],
-      release_date: params[:release_date],
-      description: params[:description],
-      rating: params[:rating]
-      )
       if Movie.valid_params?(params)
+        @movie.update(
+        title: params[:title],
+        genre: params[:genre],
+        release_date: params[:release_date],
+        description: params[:description],
+        rating: params[:rating]
+        )
         redirect "/movies/#{@movie.id}"
       else
         redirect "/movies/#{@movie.id}/edit"
