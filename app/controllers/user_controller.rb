@@ -14,9 +14,10 @@ class UserController < ApplicationController
     if logged_in?
       redirect '/movies'
     else
-      @user = User.create(username: params[:username], password: params[:password])
+      @user = User.create(username: params[:username], email: params[:email], password: params[:password])
       if @user.save
-        session[:user_id] = @user.id #sets session id, logs user in
+        set_session_id #sets session id, logs user in
+        binding.pry
         redirect '/movies'
       else
         redirect '/signup'
@@ -59,7 +60,5 @@ class UserController < ApplicationController
   def set_session_id
     session[:user_id] = @user.id
   end
-
-
 
 end
