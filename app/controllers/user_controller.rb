@@ -17,7 +17,6 @@ class UserController < ApplicationController
       @user = User.create(username: params[:username], email: params[:email], password: params[:password])
       if @user.save
         set_session_id #sets session id, logs user in
-        binding.pry
         redirect '/movies'
       else
         redirect '/signup'
