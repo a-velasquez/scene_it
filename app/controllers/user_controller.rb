@@ -1,7 +1,5 @@
 class UserController < ApplicationController
 
-  #signup
-
   get '/signup' do
     if logged_in?
       redirect '/movies'
@@ -24,8 +22,6 @@ class UserController < ApplicationController
     end
   end
 
-  #login
-
   get '/login' do
     if logged_in?
       redirect '/movies'
@@ -44,7 +40,6 @@ class UserController < ApplicationController
     end
   end
 
-  #logout
   get '/logout' do
     if logged_in?
       session.clear

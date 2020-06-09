@@ -1,6 +1,3 @@
-require 'pry'
-
-
 class MovieController < ApplicationController
 
   #CREATE
@@ -22,7 +19,6 @@ class MovieController < ApplicationController
           description: params[:description],
           rating: params[:rating]
           )
-          # @movie.save
           redirect "/movies/#{@movie.id}"
         else
           redirect '/movies/new'
@@ -39,7 +35,6 @@ class MovieController < ApplicationController
       @movies = @user.movies.all
       erb :'/movies/index'
     else
-      flash[:message] = "You need to be logged in to see your movies!"
       redirect '/login'
     end
   end
@@ -52,7 +47,6 @@ class MovieController < ApplicationController
       if authorized?(@movie) #checks to see if particualar movie belongs to user
         erb :'movies/show'
       else
-        flash[:message] = "That's not your movie!"
         redirect '/movies'
       end
     else
