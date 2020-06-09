@@ -22,7 +22,7 @@ class MovieController < ApplicationController
           description: params[:description],
           rating: params[:rating]
           )
-          @movie.save
+          # @movie.save
           redirect "/movies/#{@movie.id}"
         else
           redirect '/movies/new'
