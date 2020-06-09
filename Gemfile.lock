@@ -125,7 +125,6 @@ DEPENDENCIES
   capybara
   database_cleaner!
   pry
-  rack-flash3 (~> 1.0.5)
   rack-test
   rake
   require_all
