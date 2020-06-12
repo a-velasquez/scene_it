@@ -31,8 +31,7 @@ class MovieController < ApplicationController
   #READ ALL
   get '/movies' do
     if logged_in?
-      @user = current_user
-      @movies = @user.movies.all
+      @movies = current_user.movies
       erb :'/movies/index'
     else
       redirect '/login'
