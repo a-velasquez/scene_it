@@ -2,11 +2,19 @@
 
 <form method="post" action="/movies/<%=@movie.id%>">
   <input id="hidden" type="hidden" name="_method" value="PATCH">
-  <p>Title: </p><input type="text" name="title" value="<%= @movie.title %>"><br>
-  <p>Genre: </p><input type="text" name="genre" value="<%= @movie.genre %>"><br>
-  <p>Release Year: </p><input type="number" name="release_date" value="<%= @movie.release_date %>"><br>
-  <p>Description: </p><input type="text" name="description" value="<%= @movie.description %>"><br>
-  <p>Rating: </p><input type="number" name="rating" value="<%= @movie.rating %>"><br>
+  <p>Title: </p><input type="text" name="title" value="<%= @movie.title %>"><br><br>
+  <p>Genre: </p><input type="text" name="genre" value="<%= @movie.genre %>"><br><br>
+  <p>Release Year: </p><input type="number" name="release_date" min="1900" max="2025" value="<%= @movie.release_date %>"><br><br>
+  <p>Description: </p><input type="text" name="description" value="<%= @movie.description %>"><br><br>
+  <p>Rating (1 - 5): <br><br>
+    <select type="number" id="rating" name="rating" value="1">
+      <option value="1">1 star</option>
+      <option value="2">2 stars</option>
+      <option value="3">3 stars</option>
+      <option value="4">4 stars</option>
+      <option value="5">5 stars</option>
+    </select>
+  </p><br><br>
   <input type="submit" value="Save Changes ">
 </form><br><br>
 
