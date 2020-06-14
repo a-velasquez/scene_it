@@ -57,7 +57,7 @@ class MovieController < ApplicationController
   get '/movies/:id/edit' do
     if logged_in?
       get_movie
-      if authorized?(@movie) #ensure user can't modify movies saved by others
+      if authorized?(@movie) #ensures user can't modify movies saved by others
         erb :'movies/edit'
       else
         redirect '/movies'
@@ -69,9 +69,8 @@ class MovieController < ApplicationController
 
   patch '/movies/:id' do
     get_movie
-    if authorized?(@movie)
-      if Movie.valid_params?(params)
-        @movie.update(
+    if authorized?(@movie)    #ensures movie belongs to current user
+      if @movie.update(       #uses ActiveRecord validation to validate user inputs
         title: params[:title],
         genre: params[:genre],
         release_date: params[:release_date],
