@@ -2,11 +2,11 @@
 
 <form method="post" action="/movies/<%=@movie.id%>">
   <input id="hidden" type="hidden" name="_method" value="PATCH">
-  <p>Title: </p><input type="text" name="title" value="<%= @movie.title %>" required><br>
-  <p>Genre: </p><input type="text" name="genre" value="<%= @movie.genre %>" required><br>
-  <p>Release Year: </p><input type="number" name="release_date" value="<%= @movie.release_date %>" required><br>
-  <p>Description: </p><input type="text" name="description" value="<%= @movie.description %>" required><br>
-  <p>Rating: </p><input type="number" name="rating" value="<%= @movie.rating %>" required><br>
+  <p>Title: </p><input type="text" name="title" value="<%= @movie.title %>"><br>
+  <p>Genre: </p><input type="text" name="genre" value="<%= @movie.genre %>"><br>
+  <p>Release Year: </p><input type="number" name="release_date" value="<%= @movie.release_date %>"><br>
+  <p>Description: </p><input type="text" name="description" value="<%= @movie.description %>"><br>
+  <p>Rating: </p><input type="number" name="rating" value="<%= @movie.rating %>"><br>
   <input type="submit" value="Save Changes ">
 </form><br><br>
 
