@@ -1,6 +1,7 @@
 class MovieController < ApplicationController
 
-  #CREATE
+  #CREATE MOVIE
+  
   get '/movies/new' do
     if logged_in?
       erb :'/movies/new'
@@ -11,14 +12,14 @@ class MovieController < ApplicationController
 
   post '/movies' do
     if logged_in?
-      movie = current_user.movies.create(
-        title: params[:title],
+      movie = current_user.movies.create( #uses ActiveRecord association collection method to instantiate new instance of movie associated 
+        title: params[:title],            #with the current_user's foreign key. Also triggers validations using .create
         genre: params[:genre],
         release_date: params[:release_date],
         description: params[:description],
         rating: params[:rating]
         )
-      if movie.save
+      if movie.save                       #if movie is saved (and passes validations) redirect to individual movie
         redirect "/movies/#{movie.id}"
       else
         redirect '/movies/new'
@@ -28,22 +29,21 @@ class MovieController < ApplicationController
     end
   end
 
-  #READ ALL
+  #READ MOVIE
+  
   get '/movies' do
     if logged_in?
-      @movies = current_user.movies
+      @movies = current_user.movies #Association collection method to query current_user's movies
       erb :'/movies/index'
     else
       redirect '/login'
     end
   end
 
-  #read one instance
-
   get '/movies/:id' do
-    get_movie
+    get_movie                #uses private method get_movie to find movie by id
     if logged_in?
-      if authorized?(@movie) #checks to see if particualar movie belongs to user
+      if authorized?(@movie) #uses helper method to check if particualar movie belongs to user
         erb :'movies/show'
       else
         redirect '/movies'
@@ -53,7 +53,8 @@ class MovieController < ApplicationController
     end
   end
 
-  #render edit form
+  #UPDATE MOVIE
+  
   get '/movies/:id/edit' do
     if logged_in?
       get_movie
@@ -70,7 +71,7 @@ class MovieController < ApplicationController
   patch '/movies/:id' do
     get_movie
     if authorized?(@movie)    #ensures movie belongs to current user
-      if @movie.update(       #uses ActiveRecord validation to validate user inputs
+      if @movie.update(       #uses ActiveRecord validation to validate user inputs and update movie attributes if params are valid
         title: params[:title],
         genre: params[:genre],
         release_date: params[:release_date],
@@ -88,11 +89,12 @@ class MovieController < ApplicationController
 
 
   #DELETE MOVIE
+  
   get '/movies/:id/delete' do
     if logged_in?
       get_movie
         if authorized?(@movie) #ensures movie belongs to current user
-          @movie.destroy
+          @movie.destroy       #clears db of all records associated with movie object
           redirect '/movies'
         else
           redirect '/movies'
