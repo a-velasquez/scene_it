@@ -12,9 +12,9 @@ class UserController < ApplicationController
     if logged_in?
       redirect '/movies'
     else
-      @user = User.create(username: params[:username], email: params[:email], password: params[:password])
-      if @user.save
-        set_session_id #sets session id, logs user in
+      @user = User.create(username: params[:username], email: params[:email], password: params[:password]) #uses ActiveRecord .create to 
+      if @user.save                                                                                        #create and persist user to db
+        set_session_id     #sets session id, logs user in
         redirect '/movies'
       else
         redirect '/signup'
@@ -32,7 +32,7 @@ class UserController < ApplicationController
 
   post '/login' do
     @user = User.find_by(username: params[:username])
-    if @user && @user.authenticate(params[:password]) #uses Activerecord method to authenticate user's password
+    if @user && @user.authenticate(params[:password]) #checks is user exists and uses Activerecord method to authenticate user's password
       set_session_id
       redirect '/movies'
     else
@@ -42,17 +42,17 @@ class UserController < ApplicationController
 
   get '/logout' do
     if logged_in?
-      session.clear
+      session.clear.   #clears the user_id from the session hash
       redirect '/login'
     else
       redirect '/login'
     end
   end
 
-  private
-
+  private #only accessible through public methods that call set_session_id
+ 
   def set_session_id
-    session[:user_id] = @user.id
+    session[:user_id] = @user.id #sets the :user_id value in session hash to user's id
   end
 
 end
