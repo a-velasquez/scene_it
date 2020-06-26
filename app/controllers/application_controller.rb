@@ -1,5 +1,3 @@
-require './config/environment'
-
 class ApplicationController < Sinatra::Base
 
   configure do
@@ -16,7 +14,7 @@ class ApplicationController < Sinatra::Base
   helpers do #helpers is a Sinatra method. methods in this block are accessible to views and controllers
 
     def logged_in?
-      !!current_user #calls current_user, and returns true or false, based on if a value is true or false. 
+      !!current_user #calls current_user, and returns true or false, based on if a value is true or false.
     end
 
 
