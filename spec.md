@@ -9,11 +9,11 @@ Specs:
 - [x] Use ActiveRecord for storing information in a database
 - db/migrations,
 - ActiveRecord methods used in movie_controller.rb:
-  - line 14 .create
-  - line 21 .save
-  - line 73 .update
-  - line 95 .destroy
-  - line 108 .find_by
+  - line 15 .create
+  - line 22 .save
+  - line 74 .update
+  - line 97 .destroy
+  - line 110 .find_by
 
 
 - [x] Include more than one model class (e.g. User, Post, Category)
