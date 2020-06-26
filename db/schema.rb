@@ -11,10 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200626212430) do
+ActiveRecord::Schema.define(version: 20200626221514) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "movie_categories", force: :cascade do |t|
+    t.integer "movie_id"
+    t.integer "category_id"
   end
 
   create_table "movies", force: :cascade do |t|
@@ -26,7 +31,6 @@ ActiveRecord::Schema.define(version: 20200626212430) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "category_id"
   end
 
   create_table "users", force: :cascade do |t|
