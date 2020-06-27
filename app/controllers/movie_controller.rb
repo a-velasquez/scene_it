@@ -15,11 +15,12 @@ class MovieController < ApplicationController
     if logged_in?
       movie = current_user.movies.create(
         title: params[:title],
-        category_id: params[:category],
         release_date: params[:release_date],
         description: params[:description],
         rating: params[:rating]
         )
+        movie.category_ids = params[:categories]
+        binding.pry
       if movie.save
         redirect "/movies/#{movie.id}"
       else
