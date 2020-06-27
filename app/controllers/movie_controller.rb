@@ -19,8 +19,8 @@ class MovieController < ApplicationController
         description: params[:description],
         rating: params[:rating]
         )
-        movie.category_ids = params[:categories]
         binding.pry
+        movie.category_ids = params[:categories]
       if movie.save
         redirect "/movies/#{movie.id}"
       else

@@ -1,5 +1,4 @@
 class Category < ActiveRecord::Base
- has_many :movie_categories
- has_many :movies, through: :movie_categories
- has_many :users, through: :movies
+ has_many :movies
+ belongs_to :user
 end
