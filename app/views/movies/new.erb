@@ -5,6 +5,7 @@
   <% @categories.each do |category| %>
     <input type="checkbox" name="categories[]" id="<%= category.name %>" value="<%= category.id %>"><%= category.name %></input>
   <% end %>
+  
   <p>Year Movie Was Released: </p><input type="number" id="release_date" name="release_date" min="1900" max="2025" placeholder="e.g.(1990)"><br><br>
   <p>Description:  </p><input type="text" id="description" name="description"><br><br>
   <p>Rating (1 - 5):
