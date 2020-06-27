@@ -13,7 +13,6 @@ class MovieController < ApplicationController
 
   post '/movies' do
     if logged_in?
-      binding.pry
       movie = current_user.movies.create(
         title: params[:title],
         category_id: params[:category],
