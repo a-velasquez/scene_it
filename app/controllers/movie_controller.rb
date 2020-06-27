@@ -13,15 +13,13 @@ class MovieController < ApplicationController
 
   post '/movies' do
     if logged_in?
-      movie = current_user.movies.create(
-        title: params[:title],
-        release_date: params[:release_date],
-        description: params[:description],
-        rating: params[:rating]
-        )
-        binding.pry
-        movie.category_ids = params[:categories]
-      if movie.save
+      @user = current_user
+      binding.pry
+      @category = Category.find_or_create_by(id:params[:category])
+      @category.user_id = @user.id
+      @movie = Movie.create(title: params[:title], release_date: params[:release_date], description:params[:description], rating: params[:rating], category_id:@category.id, user_id:@user.id)
+      # binding.pry
+      if @movie.save
         redirect "/movies/#{movie.id}"
       else
         redirect '/movies/new'
