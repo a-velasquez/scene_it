@@ -14,7 +14,6 @@ class MovieController < ApplicationController
   post '/movies' do
     if logged_in?
       @user = current_user
-      binding.pry
       @category = Category.find_or_create_by(id:params[:category])
       @movie = Movie.create(title: params[:title], release_date: params[:release_date], description:params[:description], rating: params[:rating], category_ids: @category.id, user_id:@user.id)
       # binding.pry
@@ -33,7 +32,6 @@ class MovieController < ApplicationController
   get '/movies' do
     if logged_in?
       @movies = current_user.movies #Association collection method to query current_user's movies
-      binding.pry
       erb :'/movies/index'
     else
       redirect '/login'
