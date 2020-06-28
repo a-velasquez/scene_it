@@ -7,8 +7,6 @@ class ApplicationController < Sinatra::Base
     set :session_secret, 'scene' #encryption key used to create session_id
   end
 
-    binding.pry
-
   get '/' do
     erb :index
   end
