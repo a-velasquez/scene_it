@@ -19,11 +19,12 @@ class ApplicationController < Sinatra::Base
 
 
     def current_user
-      @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id] #if there is a :user_id key in the session hash
-    end                                                                          #it will look for that user by that session_id and then
-                                                                                 #set the instance variable @current_user equal to that
-    def authorized?(movie)                                                       #user. It will return nil if no user is found.
-      movie.user == current_user #takes movie as an argument and uses comparison operator to check if movie object belongs to the current_user.
+      @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+    end
+
+
+    def authorized?(movie)
+      movie.user == current_user 
     end
 
 
