@@ -7,6 +7,8 @@ class ApplicationController < Sinatra::Base
     set :session_secret, 'scene' #encryption key used to create session_id
   end
 
+    binding.pry
+
   get '/' do
     erb :index
   end
@@ -25,6 +27,8 @@ class ApplicationController < Sinatra::Base
     def authorized?(movie)                                                       #user. It will return nil if no user is found.
       movie.user == current_user #takes movie as an argument and uses comparison operator to check if movie object belongs to the current_user.
     end
+
+
 
   end
 
