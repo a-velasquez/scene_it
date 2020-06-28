@@ -15,24 +15,24 @@ ben = User.create(
 #Create and Associate Movies to Users
 Movie.create(
   title: "Hackers",
-  genre: "Thriller",
+  # genre: "Thriller",
   release_date: 1995,
   description: "Hackers are blamed for making a virus that will capsize five oil tankers.",
   rating: 5,
-  user_id: dylan.id)
+  user_id: 1)
 
 Movie.create(
   title: "The Net",
-  genre: "Thriller",
+  # genre: "Thriller",
   release_date: 1995,
   description: "A computer programmer stumbles upon a conspiracy, putting her life and the lives of those around her in great danger.",
   rating: 5,
-  user_id: gary.id)
+  user_id: 2)
 
 Movie.create(
   title: "Antitrust",
-  genre: "Thriller",
+  # genre: "Thriller",
   release_date: 2001,
   description: "When a young graduate lands his dream job writing software he uncovers some dark secrets and soon learns he can't trust anyone",
   rating: 5,
-  user_id: ben.id)
+  user_id: 3)
