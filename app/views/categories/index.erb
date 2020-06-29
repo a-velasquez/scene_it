@@ -1,5 +1,5 @@
-<p>Here Are All of Your Categories</p>
+<p>Here Are All of The Categories</p>
 
 <% @categories.each do |item| %>
-  <p> <%= item.name %> </p>
+  <p> <a href="/categories/<%= item.name %>"</a> <%= item.name %></p>
 <% end %>
