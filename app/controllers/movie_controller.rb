@@ -15,8 +15,13 @@ class MovieController < ApplicationController
     if logged_in?
       @user = current_user
       @category = Category.find_or_create_by(id:params[:category])
-      @movie = Movie.create(title: params[:title], release_date: params[:release_date], description:params[:description], rating: params[:rating], category_ids: @category.id, user_id:@user.id)
-      # binding.pry
+      @movie = Movie.create(title: params[:title],
+      release_date: params[:release_date],
+      description:params[:description],
+      rating: params[:rating],
+      category_ids: @category.id,
+      user_id: @user.id
+      )
       if @movie.save
         redirect "/movies/#{@movie.id}"
       else
@@ -55,8 +60,7 @@ class MovieController < ApplicationController
 
   get '/movies/:id/edit' do
     if logged_in?
-      get_movie
-      @categories = Category.all
+      get_movie && get_categories
       if authorized?(@movie)
         erb :'movies/edit'
       else
@@ -75,7 +79,7 @@ class MovieController < ApplicationController
         description:params[:description],
         rating: params[:rating],
         category_ids: params[:category]
-        )  
+        )
         redirect "/movies/#{@movie.id}"
       else
         redirect "/movies/#{@movie.id}/edit"
