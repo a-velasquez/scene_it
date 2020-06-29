@@ -3,7 +3,7 @@ class CategoryController < ApplicationController
 
 #show all
   get '/categories' do
-    @categories = Category.all
+    load_all_categories
     erb :'categories/index'
   end
 
@@ -19,6 +19,10 @@ class CategoryController < ApplicationController
 
   def get_category
     @category = Category.find_by_id(params[:id])
+  end
+
+  def load_all_categories
+    @categories = Category.all
   end
 
 end
