@@ -3,7 +3,9 @@
 <form method="post" action="/movies/<%=@movie.id%>">
   <input id="hidden" type="hidden" name="_method" value="PATCH">
   <p>Title: </p><input type="text" name="title" value="<%= @movie.title %>"><br><br>
-  <p>Genre: </p><input type="text" name="genre" value="<%= @movie.genre %>"><br><br>
+  <% @categories.each do |t| %>
+    <input type="checkbox" name="category" id="<%= t.name %>" value="<%= t.id %>"><%= t.name %></input>
+    <% end %>
   <p>Release Year: </p><input type="number" name="release_date" min="1900" max="2025" value="<%= @movie.release_date %>"><br><br>
   <p>Description: </p><input type="text" name="description" value="<%= @movie.description %>"><br><br>
   <p>Rating (1 - 5): <br><br>

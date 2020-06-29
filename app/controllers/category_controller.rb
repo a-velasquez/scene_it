@@ -1,5 +1,6 @@
 class CategoryController < ApplicationController
 
+
 #show all
   get '/categories' do
     @categories = Category.all
@@ -9,11 +10,10 @@ class CategoryController < ApplicationController
   #show one
 
   get '/categories/:id' do
-    get_category
-    @movies = current_user.movies
-    # binding.pry
+    @categories = Category.all
     erb :'categories/show'
   end
+
 
   private
 

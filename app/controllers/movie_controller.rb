@@ -56,6 +56,7 @@ class MovieController < ApplicationController
   get '/movies/:id/edit' do
     if logged_in?
       get_movie
+      @categories = Category.all
       if authorized?(@movie)
         erb :'movies/edit'
       else
