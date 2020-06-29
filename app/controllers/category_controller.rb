@@ -10,7 +10,7 @@ class CategoryController < ApplicationController
   #show one
 
   get '/categories/:id' do
-    @categories = Category.all
+    get_category
     erb :'categories/show'
   end
 
