@@ -1,5 +1,13 @@
 class CategoryController < ApplicationController
 
+  get '/categories/new' do
+    if logged_in?
+      erb :'categories/new'
+    else
+      redirect '/login'
+    end
+  end
+
 
 #show all
   get '/categories' do
