@@ -2,4 +2,5 @@
 
 <% @movies.each do |movie| %>
 <p><a href="/movies/<%= movie.id%>"><%= movie.title %></a></p>
+<p><%= movie.description %></p>
 <% end %>
