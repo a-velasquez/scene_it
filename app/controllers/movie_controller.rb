@@ -69,14 +69,13 @@ class MovieController < ApplicationController
 
   patch '/movies/:id' do
     get_movie
-    if authorized?(@movie)    #ensures movie belongs to current user
-      if @movie.update(       #uses ActiveRecord validation to validate user inputs and update movie attributes if params are valid
-        title: params[:title],
-        genre: params[:genre],
+    if authorized?(@movie)
+      if @movie.update(title: params[:title],
         release_date: params[:release_date],
-        description: params[:description],
-        rating: params[:rating]
-        )
+        description:params[:description],
+        rating: params[:rating],
+        category_ids: params[:category]
+        )  
         redirect "/movies/#{@movie.id}"
       else
         redirect "/movies/#{@movie.id}/edit"
