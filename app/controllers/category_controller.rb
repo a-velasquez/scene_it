@@ -2,7 +2,7 @@ class CategoryController < ApplicationController
 
 #show all
   get '/categories' do
-    @categories = Category.all
+    @categories = Category.all if current_user
     erb :'categories/index'
   end
 
