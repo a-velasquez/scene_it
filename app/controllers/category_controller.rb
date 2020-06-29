@@ -2,7 +2,7 @@ class CategoryController < ApplicationController
 
 #show all
   get '/categories' do
-    @categories = Category.all if current_user
+    @categories = Category.all
     erb :'categories/index'
   end
 
@@ -10,6 +10,8 @@ class CategoryController < ApplicationController
 
   get '/categories/:id' do
     get_category
+    @movies = current_user.movies
+    # binding.pry
     erb :'categories/show'
   end
 
