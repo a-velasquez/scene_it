@@ -11,6 +11,7 @@ class CategoryController < ApplicationController
   post '/categories' do
     @user = current_user
     @category = Category.create(name: params[:category], user_id: @user.id)
+    erb :'categories/index'
   end
 
 
