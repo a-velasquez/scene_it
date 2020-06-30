@@ -14,13 +14,11 @@ class MovieController < ApplicationController
   post '/movies' do
     if logged_in?
       @user = current_user
-      binding.pry
-      @category = Category.find_or_create_by(id:params[:category])
       @movie = Movie.create(title: params[:title],
       release_date: params[:release_date],
       description:params[:description],
       rating: params[:rating],
-      category_id: params[:category],
+      category: params[:category],
       user_id: @user.id
       )
       if @movie.save
@@ -79,7 +77,7 @@ class MovieController < ApplicationController
         release_date: params[:release_date],
         description:params[:description],
         rating: params[:rating],
-        category_ids: params[:category]
+        category_id: params[:category]
         )
         redirect "/movies/#{@movie.id}"
       else
