@@ -5,7 +5,6 @@ class MovieController < ApplicationController
   get '/movies/new' do
     if logged_in?
       get_categories
-      binding.pry
       erb :'/movies/new'
     else
       redirect '/login'
