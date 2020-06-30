@@ -2,6 +2,7 @@ class CategoryController < ApplicationController
 
   get '/categories/new' do
     if logged_in?
+      @movies = current_user.movies
       erb :'categories/new'
     else
       redirect '/login'
@@ -11,7 +12,11 @@ class CategoryController < ApplicationController
   post '/categories' do
     @user = current_user
     @category = Category.create(name: params[:category], user_id: @user.id)
-    erb :'categories/index'
+    if @category.save
+      erb :'categories/show'
+    else
+      redirect '/categories/new'
+    end
   end
 
 
@@ -26,6 +31,11 @@ class CategoryController < ApplicationController
   get '/categories/:id' do
     get_category
     erb :'categories/show'
+  end
+
+  get '/categories/:id/edit' do
+    get_category
+    erb :'categories/edit'
   end
 
 
