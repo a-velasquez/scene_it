@@ -1,7 +1,5 @@
 class MovieController < ApplicationController
 
-  #CREATE MOVIE
-
   get '/movies/new' do
     if logged_in?
       get_categories
@@ -18,9 +16,10 @@ class MovieController < ApplicationController
       release_date: params[:release_date],
       description:params[:description],
       rating: params[:rating],
-      category: params[:category],
+      category_id: params[:category],
       user_id: @user.id
       )
+      binding.pry
       if @movie.save
         redirect "/movies/#{@movie.id}"
       else
@@ -31,11 +30,9 @@ class MovieController < ApplicationController
     end
   end
 
-  #READ MOVIE
-
   get '/movies' do
     if logged_in?
-      @movies = current_user.movies #Association collection method to query current_user's movies
+      @movies = current_user.movies
       erb :'/movies/index'
     else
       redirect '/login'
@@ -54,8 +51,6 @@ class MovieController < ApplicationController
       redirect '/login'
     end
   end
-
-  #UPDATE MOVIE
 
   get '/movies/:id/edit' do
     if logged_in?
@@ -87,9 +82,6 @@ class MovieController < ApplicationController
       redirect '/movies'
     end
   end
-
-
-  #DELETE MOVIE
 
   get '/movies/:id/delete' do
     if logged_in?
