@@ -3,7 +3,7 @@
 <form action="/movies" method="POST">
   <p>Movie Title:  </p><input type="text" id="title" name="title"><br><br>
   <% @categories.each do |t| %>
-    <input type="checkbox" name="categories[]" id="<%= t.name %>" value="<%= t.id %>"><%= t.name %></input><br>
+    <input type="checkbox" name="category" id="<%= t.name %>" value="<%= t.id %>"><%= t.name %></input><br>
   <% end %>
   <br>
   <p>Year Movie Was Released: </p><input type="number" id="release_date" name="release_date" min="1900" max="2025" placeholder="e.g.(1990)"><br><br>
