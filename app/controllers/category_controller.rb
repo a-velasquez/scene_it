@@ -1,6 +1,5 @@
 class CategoryController < ApplicationController
 
-
   #CREATE
 
   get '/categories/new' do
