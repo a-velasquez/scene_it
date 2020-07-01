@@ -3,5 +3,7 @@
 <form method="post" action="/categories/<%=@category.id%>">
   <input id="hidden" type="hidden" name="_method" value="PATCH">
     <p>Category: </p><input type="text" name="category" value="<%= @category.name %>"><br><br>
-    <input type="submit" value="Save Changes">
+    <input type="submit" value="Save Changes"><br><br>
+
+    <p><a href="/categories/<%=@category.id%>/delete">Delete This Category</p>
 </form>
