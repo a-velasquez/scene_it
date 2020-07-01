@@ -3,4 +3,8 @@
 <% @category.movies.each do |movie| %>
 <p><a href="/movies/<%= movie.id%>"><%= movie.title %></a></p>
 <p><%= movie.description %></p>
-<% end %>
+<% end %><br><br>
+
+
+<p><a href="/categories/<%=@category.id%>/edit">Edit This Category</p>
+<p><a href='/movies/new'>Add A New <%= @category.name %> Movie </a></p>
