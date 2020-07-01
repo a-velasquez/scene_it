@@ -1,17 +1,67 @@
 class CategoryController < ApplicationController
 
+  #CREATE
 
-#show all
+  get '/categories/new' do
+    if logged_in?
+      @movies = current_user.movies
+      erb :'categories/new'
+    else
+      redirect '/login'
+    end
+  end
+
+  post '/categories' do
+    @user = current_user
+    @category = Category.create(name: params[:category], user_id: @user.id)
+    if @category.save
+      erb :'categories/show'
+    else
+      redirect '/categories/new'
+    end
+  end
+
+  #READ
+
   get '/categories' do
     load_all_categories
     erb :'categories/index'
   end
 
-  #show one
-
   get '/categories/:id' do
     get_category
     erb :'categories/show'
+  end
+
+  #UPDATE
+
+  get '/categories/:id/edit' do
+    get_category
+    erb :'categories/edit'
+  end
+
+  patch '/categories/:id' do
+    get_category
+    if @category.update(
+      name: params[:category]
+      )
+      binding.pry
+      redirect "/categories/#{@category.id}"
+    else
+      redirect "/movies/#{@category.id}/edit"
+    end
+  end
+
+  #DELETE
+
+  get '/categories/:id/delete' do
+    if logged_in?
+      get_category
+      @category.destroy
+      redirect '/categories'
+    else
+      redirect '/login'
+    end
   end
 
 

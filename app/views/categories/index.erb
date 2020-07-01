@@ -1,5 +1,9 @@
-<p>Here Are All of The Categories</p>
+<h2>Here Are All of The Categories</h2>
 
-<% @categories.each do |item| %>
-  <h4> <a href="/categories/<%= item.id %>"</a> <%= item.name %></h4><br>
+
+<% @categories.each do |category| %>
+  <h4> <a href="/categories/<%= category.id %>"</a> <%= category.name %></h4><br>
 <% end %>
+
+<br><br>
+<p><a href='/categories/new'>Add A New Category</a></p>
