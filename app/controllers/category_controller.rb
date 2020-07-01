@@ -53,6 +53,19 @@ class CategoryController < ApplicationController
     end
   end
 
+  #DELETE
+
+  get '/categories/:id/delete' do
+    if logged_in?
+      get_category
+      @category.destroy
+      redirect '/categories'
+    else
+      redirect '/login'
+    end
+  end
+
+
   private
 
   def get_category
