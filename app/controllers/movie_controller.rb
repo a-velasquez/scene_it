@@ -17,9 +17,7 @@ class MovieController < ApplicationController
       description:params[:description],
       rating: params[:rating],
       category_id: params[:category],
-      user_id: @user.id
-      )
-      binding.pry
+      user_id: @user.id)
       if @movie.save
         redirect "/movies/#{@movie.id}"
       else
@@ -104,7 +102,7 @@ class MovieController < ApplicationController
   end
 
   def get_categories
-    @categories = Category.all
+    @categories = current_user.categories
   end
 
 end

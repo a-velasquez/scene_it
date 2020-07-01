@@ -1,5 +1,8 @@
 class CategoryController < ApplicationController
 
+
+  #CREATE
+
   get '/categories/new' do
     if logged_in?
       @movies = current_user.movies
@@ -19,25 +22,36 @@ class CategoryController < ApplicationController
     end
   end
 
+  #READ
 
-#show all
   get '/categories' do
     load_all_categories
     erb :'categories/index'
   end
-
-  #show one
 
   get '/categories/:id' do
     get_category
     erb :'categories/show'
   end
 
+  #UPDATE
+
   get '/categories/:id/edit' do
     get_category
     erb :'categories/edit'
   end
 
+  patch '/categories/:id' do
+    get_category
+    if @category.update(
+      name: params[:category]
+      )
+      binding.pry
+      redirect "/categories/#{@category.id}"
+    else
+      redirect "/movies/#{@category.id}/edit"
+    end
+  end
 
   private
 
